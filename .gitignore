@@ -1,0 +1,8 @@
+# project files
+.vscode/
+
+# temporary files
+test-data/
+
+# sensitive files
+.env
