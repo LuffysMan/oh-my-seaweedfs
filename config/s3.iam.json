@@ -1,0 +1,100 @@
+{
+    "identities": [
+        {
+            "name": "admin",
+            "credentials": [
+                {
+                    "accessKey": "REPLACE_WITH_ADMIN_ACCESS_KEY",
+                    "secretKey": "REPLACE_WITH_ADMIN_SECRET_KEY"
+                }
+            ],
+            "actions": [
+                "Admin",
+                "Read",
+                "List",
+                "Tagging",
+                "Write"
+            ]
+        },
+        {
+            "name": "readonly_user",
+            "credentials": [
+                {
+                    "accessKey": "REPLACE_WITH_RO_ACCESS_KEY",
+                    "secretKey": "REPLACE_WITH_RO_SECRET_KEY"
+                }
+            ],
+            "actions": [
+                "Read",
+                "List"
+            ]
+        },
+        {
+            "name": "readwrite_user",
+            "credentials": [
+                {
+                    "accessKey": "REPLACE_WITH_RW_ACCESS_KEY",
+                    "secretKey": "REPLACE_WITH_RW_SECRET_KEY"
+                }
+            ],
+            "actions": [
+                "Read",
+                "List",
+                "Tagging",
+                "Write"
+            ]
+        }
+    ],
+    "sts": {
+        "tokenDuration": "1h",
+        "maxSessionLength": "12h",
+        "issuer": "seaweedfs-sts",
+        "signingKey": "REPLACE_WITH_BASE64_ENCODED_SIGNING_KEY"
+    },
+    "policy": {
+        "storeType": "memory",
+        "defaultEffect": "Deny"
+    },
+    "policies": [
+        {
+            "name": "ReadWriteAccess",
+            "document": {
+                "Version": "2012-10-17",
+                "Statement": [
+                    {
+                        "Effect": "Allow",
+                        "Action": [
+                            "s3:GetObject",
+                            "s3:PutObject",
+                            "s3:DeleteObject",
+                            "s3:ListBucket"
+                        ],
+                        "Resource": [
+                            "arn:aws:s3:::*",
+                            "arn:aws:s3:::*/*"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "name": "ReadOnlyAccess",
+            "document": {
+                "Version": "2012-10-17",
+                "Statement": [
+                    {
+                        "Effect": "Allow",
+                        "Action": [
+                            "s3:GetObject",
+                            "s3:ListBucket"
+                        ],
+                        "Resource": [
+                            "arn:aws:s3:::*",
+                            "arn:aws:s3:::*/*"
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}

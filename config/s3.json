@@ -1,0 +1,58 @@
+{
+    "identities": [
+        {
+            "name": "admin",
+            "credentials": [
+                {
+                    "accessKey": "REPLACE_WITH_ADMIN_ACCESS_KEY",
+                    "secretKey": "REPLACE_WITH_ADMIN_SECRET_KEY"
+                }
+            ],
+            "actions": [
+                "Admin",
+                "Read",
+                "List",
+                "Tagging",
+                "Write"
+            ]
+        },
+        {
+            "name": "readonly_user",
+            "credentials": [
+                {
+                    "accessKey": "REPLACE_WITH_RO_ACCESS_KEY",
+                    "secretKey": "REPLACE_WITH_RO_SECRET_KEY"
+                }
+            ],
+            "actions": [
+                "Read",
+                "List"
+            ]
+        },
+        {
+            "name": "readwrite_user",
+            "credentials": [
+                {
+                    "accessKey": "REPLACE_WITH_RW_ACCESS_KEY",
+                    "secretKey": "REPLACE_WITH_RW_SECRET_KEY"
+                }
+            ],
+            "actions": [
+                "Read",
+                "List",
+                "Tagging",
+                "Write"
+            ]
+        }
+    ],
+    "buckets": [
+        {
+            "name": "my-encrypted-bucket",
+            "encryption": {
+                "sseS3": {
+                    "enabled": true
+                }
+            }
+        }
+    ]
+}
