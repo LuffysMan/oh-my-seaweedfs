@@ -44,15 +44,5 @@
                 "Write"
             ]
         }
-    ],
-    "buckets": [
-        {
-            "name": "my-encrypted-bucket",
-            "encryption": {
-                "sseS3": {
-                    "enabled": true
-                }
-            }
-        }
     ]
 }
