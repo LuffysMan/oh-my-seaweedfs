@@ -5,7 +5,7 @@ CONFIG_DIR="/etc/seaweedfs"
 source "${CONFIG_DIR}"/oh-my.conf
 
 function main() {
-    nohup weed volume \
+    nohup weed -logdir="${log_dir}"  volume \
         -ip="${host}" \
         -ip.bind=0.0.0.0 \
         -port=8080 \

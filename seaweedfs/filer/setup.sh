@@ -5,6 +5,8 @@ CONFIG_DIR="/etc/seaweedfs"
 FILER_CONF="${CONFIG_DIR}"/filer.toml
 OH_MY_CONF="${CONFIG_DIR}"/oh-my.conf
 
+LOG_FILE=/var/log/seaweedfs/filer.log
+
 source "${OH_MY_CONF}"
 
 
@@ -23,7 +25,7 @@ function main() {
     sed -i "/database =/c database = \"${db_name}\"" "${FILER_CONF}"
 
     # start filer
-    nohup weed filer \
+    nohup weed -logdir="${log_dir}" filer \
     -ip="${host}" \
     -ip.bind=0.0.0.0 \
     -port=8888 \
