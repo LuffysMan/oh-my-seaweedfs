@@ -1,0 +1,22 @@
+[Unit]
+Description=SeaweedFS S3 Gateway
+After=seaweedfs-filer.service
+Wants=seaweedfs-filer.service
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/local/bin/weed \
+  -logdir="${LOG_DIR}" \
+   s3 \
+  -ip.bind=0.0.0.0 \
+  -port=PORT_S3 \
+  -filer=FILERS \
+  -config=/etc/seaweedfs/s3.json \
+  -encryptVolumeData
+Restart=on-failure
+RestartSec=5
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target

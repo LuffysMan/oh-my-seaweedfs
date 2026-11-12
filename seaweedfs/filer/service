@@ -1,0 +1,25 @@
+[Unit]
+Description=SeaweedFS Filer Server
+After=seaweedfs-volume.service
+Wants=seaweedfs-volume.service
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/local/bin/weed \
+  -logdir="${LOG_DIR}" \
+   filer \
+  -ip=LOCAL_IP \
+  -ip.bind=0.0.0.0 \
+  -port=PORT_FILER \
+  -master=MASTERS \
+  -defaultReplicaPlacement=DEFAULT_REPLICATION \
+  -dataCenter=DATA_CENTER \
+  -rack=RACK \
+  -encryptVolumeData
+Restart=on-failure
+RestartSec=5
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target

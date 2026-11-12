@@ -1,0 +1,25 @@
+[Unit]
+Description=SeaweedFS Master Server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/local/bin/weed \
+  -logdir="${LOG_DIR}" \
+   master \
+  -ip=LOCAL_IP \
+  -ip.bind=0.0.0.0 \
+  -port=PORT_MASTER \
+  -mdir=DATA_DIR/seaweedfs/master \
+  -peers=PEERS \
+  -raftHashicorp \
+  -defaultReplication=DEFAULT_REPLICATION \
+  -volumeSizeLimitMB=1000
+Restart=on-failure
+RestartSec=5
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target

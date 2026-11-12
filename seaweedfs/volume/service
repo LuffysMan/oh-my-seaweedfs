@@ -1,0 +1,26 @@
+[Unit]
+Description=SeaweedFS Volume Server
+After=seaweedfs-master.service
+Wants=seaweedfs-master.service
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/local/bin/weed \
+  -logdir="${LOG_DIR}" \
+   volume \
+  -ip=LOCAL_IP \
+  -ip.bind=0.0.0.0 \
+  -port=PORT_VOLUME \
+  -dir=DATA_DIR/seaweedfs/volume \
+  -max=0 \
+  -master=MASTERS \
+  -dataCenter=DATA_CENTER \
+  -rack=RACK \
+  -minFreeSpace=15
+Restart=on-failure
+RestartSec=5
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target

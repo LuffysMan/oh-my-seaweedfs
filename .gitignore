@@ -1,5 +1,6 @@
 # project files
 .vscode/
+proxy/
 
 # temporary files
 test-data/
